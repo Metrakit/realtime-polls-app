@@ -10,5 +10,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/getlist', pollController.list);
 router.get('/get/:id', pollController.get);
+router.get('/create', pollController.create);
+router.get('/vote/:pollid/:choiceid', pollController.vote);
 
 module.exports = router;

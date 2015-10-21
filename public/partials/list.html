@@ -11,26 +11,32 @@
 	</div>
 </div>
 
-<div ng-switch on="polls.length">
-	<div ng-switch-when="0">
-		No polls
-	</div>
-	<div ng-switch-default>
-		<table class="table table-hover">
-			<thead>
-				<tr>
-					<th>Questions</th>
-					<th>Answers</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr ng-repeat="poll in polls | filter:query">
-					<td><a ng-href="/#/view/{{poll._id}}">{{poll.question}}</a></td>
-					<td>
-						{{poll.choices}}
-					</td>
-				</tr>
-			</tbody>
-		</table>
+<div ng-if="loading">
+	<div ng-include="'partials/components/loader.html'"></div>
+</div>
+
+<div ng-if="!loading">
+	<div ng-switch on="polls.length">
+		<div ng-switch-when="0">
+			No polls
+		</div>
+		<div ng-switch-default>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>Questions</th>
+						<th>Answers</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="poll in polls | filter:query">
+						<td><a ng-href="/#/view/{{poll._id}}">{{poll.question}}</a></td>
+						<td>
+							{{poll.choices}}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </div>

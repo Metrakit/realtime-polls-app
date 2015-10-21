@@ -15,4 +15,6 @@ app.factory('Poll', function($resource) {
 			isArray: false
 		}
 	});
+}).factory('Vote', function($resource) {
+	return $resource('vote/:pollid/:choiceid');
 });

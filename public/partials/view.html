@@ -8,5 +8,21 @@
 </div>
 <hr class="m-t-0">
 
-<h2><strong>Question:</strong> {{poll.question}} </h2>
-<p>{{poll.choices}}</p>
+<div ng-if="loading">
+	<div ng-include="'partials/components/loader.html'"></div>
+</div>
+
+<div ng-if="!loading">
+	<h2><strong>Question:</strong> {{poll.question}} </h2>
+	<p>{{poll.choices}}</p>
+	<form class="m-l-md" role="form" ng-submit="vote()">
+		<div ng-repeat="choice in poll.choices" class="radio">
+			<label>
+				<input type="radio" name="choice" value="{{choice._id}}" ng-model="poll.userVote">
+				{{choice.answer}}
+			</label>
+		</div>
+		<hr>
+		<button class="btn btn-success" type="submit">Voter</button>
+	</form>
+</div>

@@ -18,36 +18,48 @@ exports.get = function(req, res, next) {
 	});
 };
 
-// exports.create = function(req, res, next) {
-// 	record = {
-// 		question: 'Quel est votre langage préféré ?',
-// 		choices: [
-// 			{
-// 				answer: 'PHP',
-// 				votes: [{ip: '192.168.1.1'}, {ip: '192.168.1.2'}, {ip: '192.168.1.3'}]
-// 			},
-// 			{
-// 				answer: 'Node.js',
-// 				votes: [{ip: '192.168.1.6'}, {ip: '192.168.1.11'}, {ip: '192.168.1.9'}, {ip: '192.168.1.20'}]
-// 			},
-// 			{
-// 				answer: 'Assembleur x86',
-// 				votes: [{ip: '192.168.1.5'}, {ip: '192.168.1.12'}]
-// 			},
-// 			{
-// 				answer: 'Chinois',
-// 				votes: [{ip: '192.168.1.22'}, {ip: '192.168.1.14'}]
-// 			}
-// 		]
-// 	};
+exports.vote = function(req, res, next) {
 
-// 	var voteModel = new vote(record);
-// 	voteModel.save(function(err, result) {
-// 		if (err | !result) {
-// 			console.log('ERREUR créaton mongo');
-// 		}
-// 		res.json(result);
-// 	});
+	var voteModel = vote.findById(req.param.pollId);
+	// to finish...
+	voteModel.save(function(err, result){
+		if (err || !result) {
+			console.log('ERREUR insertion !');
+		}
+		res.json(result);
+	});
+};
 
-// 	//res.render('polls/show');
-// };
+exports.create = function(req, res, next) {
+	record        = {
+		question: 'Quel est votre langage préféré ?',
+		choices: [
+			{
+				answer: 'PHP',
+				votes: [{ip: '192.168.1.1'}, {ip: '192.168.1.2'}, {ip: '192.168.1.3'}]
+			},
+			{
+				answer: 'Node.js',
+				votes: [{ip: '192.168.1.6'}, {ip: '192.168.1.11'}, {ip: '192.168.1.9'}, {ip: '192.168.1.20'}]
+			},
+			{
+				answer: 'Assembleur x86',
+				votes: [{ip: '192.168.1.5'}, {ip: '192.168.1.12'}]
+			},
+			{
+				answer: 'Chinois',
+				votes: [{ip: '192.168.1.22'}, {ip: '192.168.1.14'}]
+			}
+		]
+	};
+
+	var voteModel = new vote(record);
+	voteModel.save(function(err, result) {
+		if (err | !result) {
+			console.log('ERREUR créaton mongo');
+		}
+		res.json(result);
+	});
+
+	//res.render('polls/show');
+};
