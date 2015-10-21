@@ -1,0 +1,36 @@
+<div class="page-header">
+	<h1>Polls: list</h1>
+</div>
+
+<div class="row m-b-md">
+	<div class="col-md-8">
+		<a href='/#/create' class="btn btn-primary">Add a poll</a>
+	</div>
+	<div class="col-md-4 pull-right">
+		<input type="text" class="form-control" name="keyword" placeholder="Search something" ng-model="query">
+	</div>
+</div>
+
+<div ng-switch on="polls.length">
+	<div ng-switch-when="0">
+		No polls
+	</div>
+	<div ng-switch-default>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Questions</th>
+					<th>Answers</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="poll in polls | filter:query">
+					<td><a ng-href="/#/view/{{poll._id}}">{{poll.question}}</a></td>
+					<td>
+						{{poll.choices}}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

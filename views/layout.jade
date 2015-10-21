@@ -1,7 +1,27 @@
 doctype html
-html
+html(lang='en', ng-app='polls')
   head
+    meta(charset='UTF-8')
     title= title
+    link(rel='stylesheet', href='https://cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/css/bootstrap.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
+    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js')
+    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.min.js')
+    script(src='//ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.min.js')
+    script(src='/javascripts/app.js')
+    script(src='/javascripts/controllers.js')
+    script(src='/javascripts/services.js')
   body
-    block content
+    nav.navbar.navbar-light.bg-faded.m-b-md(role='navigation')
+      div.container
+        div.navbar-header
+          a.navbar-brand(href='/#/list')= "Poll Demo"
+          ul.nav.navbar-nav.pull-right
+            li.nav-item
+              a.nav-link(href='/#/create')= "Add a poll"
+    div.container
+      div(ng-view)
+        block content
+
+    script(src='//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js')
+    script(src='//cdn.rawgit.com/twbs/bootstrap/v4-dev/dist/js/bootstrap.js')   
