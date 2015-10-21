@@ -21,7 +21,9 @@ exports.get = function(req, res, next) {
 exports.vote = function(req, res, next) {
 
 	var voteModel = vote.findById(req.param.pollId);
+
 	// to finish...
+	//voteModel.choices.push({answer: req.param.choiceId})
 	voteModel.save(function(err, result){
 		if (err || !result) {
 			console.log('ERREUR insertion !');
